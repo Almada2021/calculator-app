@@ -1,5 +1,6 @@
 import { Colors } from "@/constants/Colors";
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
+const { width, height } = Dimensions.get('window');
 
 export const globalStyles = StyleSheet.create({
     background: {
@@ -13,14 +14,14 @@ export const globalStyles = StyleSheet.create({
     },
     mainResult: {
         color: Colors.textPrimary,
-        fontSize: 70,
+        fontSize: width > 360 ? 70 : 60,
         textAlign: 'right',
         fontWeight: '400',
         // fontFamily: 'SpaceMono',
     },
     subResult: {
         color: Colors.textSecondary,
-        fontSize: 40,
+        fontSize: width > 360 ? 40 : 30,
         textAlign: 'right',
         fontWeight: '300',
     },
@@ -31,17 +32,19 @@ export const globalStyles = StyleSheet.create({
         paddingHorizontal: 10,
     },
     button: {
-        height: 80,
+        height: width > 360 ? 80 : 70,
         width: 80,
         backgroundColor: Colors.darkGray,
         borderRadius: 100,
+        display: 'flex',
         justifyContent: 'center',
+        alignItems: 'center',
         marginHorizontal: 10,
     },
     buttonText: {
         textAlign: 'center',
         padding: 10,
-        fontSize: 30,
+        fontSize: width > 360 ? 30 : 18,
         color: Colors.textPrimary,
         fontWeight: 300,
         fontFamily: 'SpaceMono'
