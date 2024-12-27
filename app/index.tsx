@@ -51,7 +51,7 @@ const CalculatorApp = () => {
                     color={Colors.lightGray}
                     label='del'
                     blackText
-                    onPress={() => { deleteLast() }}
+                    onPress={deleteLast}
                 />
                 <CalculatorButton
                     label='÷'

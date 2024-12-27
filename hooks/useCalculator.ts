@@ -13,8 +13,37 @@ export const useCalculator = () => {
     const lastOperation = useRef<Operator | undefined>();
     useEffect(() => {
         if (lastOperation.current) {
-            const firstFormulaPart = formula.split(' ').at(0)
-            setFormula(`${firstFormulaPart} ${lastOperation.current} ${number}`);
+            const operations = formula.split(' ')
+            const firstFormulaPart = operations.at(0)
+            if (operations.length + 1 < 4 || operations[operations.length - 1] === '0') {
+                setFormula(`${firstFormulaPart} ${lastOperation.current} ${number}`)
+            } else {
+                const num1 = Number(operations[0]);
+                const num2 = Number(operations[2]);
+                let result;
+                if (!isNaN(num1) && !isNaN(num2)) {
+                    switch (operations[1]) {
+                        case Operator.add:
+                            result = num1 + num2;
+                            break;
+                        case Operator.substract:
+                            result = num1 - num2;
+                            break;
+                        case Operator.multiply:
+                            result = num1 * num2;
+                            break;
+                        case Operator.divide:
+                            result = num1 / num2;
+                            break;
+                        default:
+                            console.log("WARNING")
+                            result = "0";
+                            break;
+                    }
+                    const str = `${result} ${lastOperation.current} ${number}`
+                    setFormula(str)
+                }
+            }
         } else {
             setFormula(number);
         }
@@ -77,6 +106,7 @@ export const useCalculator = () => {
         }
         setNumber(number + numberString)
     }
+
     const setLastNumber = () => {
         setPreviousNumber(number);
         setNumber('0');
