@@ -17,6 +17,9 @@
         "backgroundColor": "#ffffff"
       }
     },
+    "androidNavigationBar": {
+      "visible": "sticky-immersive"
+    },
     "web": {
       "bundler": "metro",
       "output": "static",
